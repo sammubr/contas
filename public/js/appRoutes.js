@@ -3,50 +3,41 @@
  */
 angular.module('appRoutes', [])
 
-    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-        $routeProvider
+    $routeProvider
 
-            .when('/', {
-                templateUrl: 'views/home.html',
-                controller: 'MainController'
-            })
+      .when('/', {
+        templateUrl: 'views/home.html',
+        controller: 'MainController'
+      })
 
-            .when('/usuarios/list', {
-                templateUrl: 'views/usuario/list.html',
-                controller: 'UsuarioListController'
-            })
+      .when('/usuarios/list', {
+        templateUrl: 'views/usuario/list.html',
+        controller: 'UsuarioListController'
+      })
 
-            .when('/usuarios/item', {
-                templateUrl: 'views/usuario/item.html',
-                controller: 'UsuarioItemController'
-            })
+      .when('/usuarios/item', {
+        templateUrl: 'views/usuario/item.html',
+        controller: 'UsuarioItemController'
+      })
 
-            .when('/secretarias/list', {
-                templateUrl: 'views/secretaria/list.html',
-                controller: 'SecretariaListController'
-            })
-            .when('/secretarias/item', {
-                templateUrl: 'views/secretaria/item.html',
-                controller: 'SecretariaItemController'
-            })
-            .when('/identidades/list', {
-                templateUrl: 'views/identidade/list.html',
-                controller: 'IdentidadeListController'
-            })
-            .when('/identidades/item', {
-                templateUrl: 'views/identidade/item.html',
-                controller: 'IdentidadeItemController'
-            })
-
-
-
-
-
-
-
-
-
+      .when('/secretarias/list', {
+        templateUrl: 'views/secretaria/list.html',
+        controller: 'SecretariaListController'
+      })
+      .when('/secretarias/item', {
+        templateUrl: 'views/secretaria/item.html',
+        controller: 'SecretariaItemController'
+      })
+      .when('/identidades/list', {
+        templateUrl: 'views/identidade/list.html',
+        controller: 'IdentidadeListController'
+      })
+      .when('/identidades/item', {
+        templateUrl: 'views/identidade/item.html',
+        controller: 'IdentidadeItemController'
+      })
 
 
 //            .when('/identidades', {
@@ -54,31 +45,31 @@ angular.module('appRoutes', [])
 //                controller: 'IdentidadeController'
 //            })
 
-            .when('/contas', {
-                templateUrl: 'views/conta.html',
-                controller: 'ContaController'
-            })
+      .when('/contas', {
+        templateUrl: 'views/conta.html',
+        controller: 'ContaController'
+      })
 
-            .when('/login', {
-                templateUrl: 'views/login.html',
-                controller: 'LoginController'
-            })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController'
+      })
 
-            .when('/relatorio1', {
-                templateUrl: 'views/relatorio1.html',
-                controller: 'Relatorio1Controller'
-            });
-
-
-        $locationProvider.html5Mode(true);
+      .when('/relatorio1', {
+        templateUrl: 'views/relatorio1.html',
+        controller: 'Relatorio1Controller'
+      });
 
 
-    }])
+    $locationProvider.html5Mode(true);
 
-    .run(function ($rootScope, $location, Login) {
-        $rootScope.$on("$locationChangeStart", function (event, next, current) {
-            if (!Login.isLogged()) {
-                $location.path('/login');
-            }
-        });
+
+  }])
+
+  .run(function ($rootScope, $location, Login) {
+    $rootScope.$on("$locationChangeStart", function (event, next, current) {
+      if (!Login.isLogged()) {
+        $location.path('/login');
+      }
     });
+  });

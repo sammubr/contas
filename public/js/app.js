@@ -3,16 +3,16 @@
  */
 angular.module('sampleApp', ['ngRoute', 'appRoutes', 'ngCookies',
 
-    'MainCtrl', 'MenuCtrl',
-    'LoginCtrl', 'LoginService',
+  'MainCtrl', 'MenuCtrl',
+  'LoginCtrl', 'LoginService',
 
-    'UsuarioService', 'UsuarioListCtrl', 'UsuarioItemCtrl',
-    'SecretariaService', 'SecretariaListCtrl', 'SecretariaItemCtrl',
-    'IdentidadeService', 'IdentidadeListCtrl', 'IdentidadeItemCtrl',
+  'UsuarioService', 'UsuarioListCtrl', 'UsuarioItemCtrl',
+  'SecretariaService', 'SecretariaListCtrl', 'SecretariaItemCtrl',
+  'IdentidadeService', 'IdentidadeListCtrl', 'IdentidadeItemCtrl',
 
 
-    'ModalInstanceCtrl',
-    'Relatorio1Ctrl', 'Relatorio1Service',
-    'ContaCtrl', 'ContaService',
+  'ModalInstanceCtrl',
+  'Relatorio1Ctrl', 'Relatorio1Service',
+  'ContaCtrl', 'ContaService',
 
-    'ui.bootstrap']);
+  'ui.bootstrap']);
