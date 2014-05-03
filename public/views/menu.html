@@ -1,0 +1,51 @@
+<div ng-controller="MenuController">
+
+
+
+
+
+    <nav class="navbar navbar-default navbar-inverse" role="navigation">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" ng-click="isCollapsed = !isCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Sammubr</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="isCollapsed">
+
+                <ul class="nav navbar-nav">
+                    <li ng:repeat="menu in mainMenu" class="dropdown">
+                        <a ng-href={{menu.link}} class="dropdown-toggle" data-toggle="dropdown">{{menu.nome}} <b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li ng:repeat="subMenu in menu.subMenu">
+                                <a ng-href={{subMenu.link}}>{{subMenu.nome}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{usuario.nome}} <b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/login">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+</div>
+

@@ -1,0 +1,45 @@
+<div data-ng-init="openController()">
+
+    <div class="container">
+
+        <h1 class="align-center"><p class="text-center">Sistema de cadastro de contas</p></h1>
+
+        <form class="form-signin" name="loginForm" ng-submit="login()" novalidate>
+
+
+
+
+
+
+
+
+
+            <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+            <!-- USUARIO -->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : loginForm.usuario.$invalid && !loginForm.usuario.$pristine }">
+                <label>Usuário</label>
+                <input type="text" name="usuario" class="form-control" ng-model="usuario" placeholder="Usuário"
+                       autofocus required>
+
+                <p ng-show="loginForm.usuario.$invalid && !loginForm.usuario.$pristine" class="help-block">Usuário é
+                    obrigatório</p>
+            </div>
+
+            <!-- SENHA -->
+            <div class="form-group" ng-class="{ 'has-error' : loginForm.senha.$invalid && !loginForm.senha.$pristine }">
+                <label>Senha</label>
+                <input type="password" name="senha" class="form-control" ng-model="senha" placeholder="Senha" required>
+
+                <p ng-show="loginForm.senha.$invalid && !loginForm.senha.$pristine" class="help-block">Senha é
+                    obrigatório</p>
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="loginForm.$invalid">Login
+            </button>
+
+        </form>
+
+    </div>
+</div>

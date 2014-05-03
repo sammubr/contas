@@ -1,0 +1,36 @@
+<div ng-include src="'views/menu.html'"></div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{titulo}}</h3>
+    </div>
+
+    <div class="panel-body">
+
+        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+        <form name="form" novalidate ng-submit="salva()">
+
+            <div class="form-group"
+                 ng-class="{ 'has-error' : form.descricao.$invalid && !form.descricao.$pristine }">
+                <label>Descrição</label>
+                <input type="text" name="descricao" class="form-control" ng-model="item.descricao" placeholder="Descrição"
+                       autofocus required my-focus="true">
+
+                <p ng-show="form.descricao.$invalid && !form.descricao.$pristine"
+                   class="help-block">Descrição é
+                    obrigatório</p>
+            </div>
+
+            <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid " title="OK">
+                <span class="glyphicon glyphicon-ok"></span> OK
+            </button>
+
+            <a ng-href="{{listaHref}}" class="btn btn-default" title="Cancelar">
+                <span class="glyphicon glyphicon-remove"></span> Cancelar
+            </a>
+
+        </form>
+    </div>
+</div>
+

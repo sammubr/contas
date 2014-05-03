@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+
+    <title>Sistema de cadastro de contas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <!-- custom styles -->
+
+</head>
+<body ng-app="sampleApp" ng-controller="MainController">
+<div class="container">
+
+    <!-- ANGULAR DYNAMIC CONTENT -->
+    <div ng-view></div>
+
+</div>
+
+<!-- JS -->
+<script src="libs/angular/angular.js"></script>
+<script src="libs/angular-route/angular-route.js"></script>
+<script src="libs/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="libs/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="libs/angular-cookies/angular-cookies.js"></script>
+
+<!-- ANGULAR CUSTOM -->
+<script src="js/controllers/MainCtrl.js"></script>
+<script src="js/controllers/MenuCtrl.js"></script>
+
+<script src="js/services/UsuarioService.js"></script>
+<script src="js/controllers/UsuarioListCtrl.js"></script>
+<script src="js/controllers/UsuarioItemCtrl.js"></script>
+
+<script src="js/services/SecretariaService.js"></script>
+<script src="js/controllers/SecretariaListCtrl.js"></script>
+<script src="js/controllers/SecretariaItemCtrl.js"></script>
+
+<script src="js/services/IdentidadeService.js"></script>
+<script src="js/controllers/IdentidadeListCtrl.js"></script>
+<script src="js/controllers/IdentidadeItemCtrl.js"></script>
+
+
+
+
+<script src="js/controllers/ModalInstanceCtrl.js"></script>
+
+<script src="js/controllers/Relatorio1Ctrl.js"></script>
+<script src="js/services/Relatorio1Service.js"></script>
+
+<script src="js/controllers/ContaCtrl.js"></script>
+<script src="js/services/ContaService.js"></script>
+
+<script src="js/controllers/LoginCtrl.js"></script>
+<script src="js/services/LoginService.js"></script>
+
+<script src="js/appRoutes.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<div ng-include src="'views/menu.html'"></div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{titulo}}</h3>
+    </div>
+
+    <div class="panel-body">
+
+        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+        <!--ITEM NOVO-->
+        <form name="novoForm" novalidate ng-hide="!itemNovo" ng-submit="salva()">
+
+            <!-- USUARIO -->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : novoForm.usuario.$invalid && !novoForm.usuario.$pristine }">
+                <label>Usuário</label>
+                <input type="text" name="usuario" class="form-control" ng-model="item.nome" placeholder="Usuário"
+                       autofocus required my-focus="itemNovo">
+
+                <p ng-show="novoForm.usuario.$invalid && !novoForm.usuario.$pristine" class="help-block">
+                    Usuário é
+                    obrigatório</p>
+            </div>
+
+
+            <!-- SENHA -->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : novoForm.senha.$invalid && !novoForm.senha.$pristine }">
+                <label>Senha</label>
+                <input type="password" name="senha" class="form-control" ng-model="item.senha" placeholder="Senha"
+                       required>
+
+                <p ng-show="novoForm.senha.$invalid && !novoForm.senha.$pristine" class="help-block">Senha
+                    é
+                    obrigatório</p>
+            </div>
+
+            <!-- REPETE SENHA -->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : !novoForm.repeteSenha.$pristine && ( novoForm.repeteSenha.$invalid || (item.repeteSenha != item.senha) ) }">
+                <label>Digite a senha novamente</label>
+                <input type="password" name="repeteSenha" class="form-control" ng-model="item.repeteSenha"
+                       placeholder="Digite a senha novamente" required>
+
+                <p ng-show="!novoForm.repeteSenha.$pristine && ( novoForm.repeteSenha.$invalid || (item.repeteSenha != item.senha) )"
+                   class="help-block">
+                    Digite a mesma senha nos dois campos</p>
+            </div>
+
+
+            <button class="btn btn-primary" type="submit"
+                    ng-disabled="novoForm.$invalid || (item.repeteSenha != item.senha)"
+                    title="OK">
+                <span class="glyphicon glyphicon-ok"></span> OK
+            </button>
+
+            <a ng-href="{{listaHref}}" class="btn btn-default" title="Cancelar">
+                <span class="glyphicon glyphicon-remove"></span> Cancelar
+            </a>
+
+        </form>
+
+
+        <!--ITEM JÁ EXISTENTE-->
+        <form name="editaForm" novalidate ng-hide="itemNovo" ng-submit="salva()">
+
+            <!-- USUARIO -->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : editaForm.usuario.$invalid && !editaForm.usuario.$pristine }">
+                <label>Usuário</label>
+                <input type="text" name="usuario" class="form-control" ng-model="item.nome" placeholder="Usuário"
+                       autofocus required my-focus="!itemNovo">
+
+                <p ng-show="editaForm.usuario.$invalid && !editaForm.usuario.$pristine"
+                   class="help-block">Usuário é
+                    obrigatório</p>
+            </div>
+
+
+            <!-- SENHA ATUAL-->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : editaForm.senhaAtual.$invalid && !editaForm.senhaAtual.$pristine }">
+                <label>Senha atual</label>
+                <input type="password" name="senhaAtual" class="form-control" ng-model="item.senhaAtual"
+                       placeholder="Senha atual"
+                       required>
+
+                <p ng-show="editaForm.senhaAtual.$invalid && !editaForm.senhaAtual.$pristine"
+                   class="help-block">Senha atual é
+                    obrigatório</p>
+            </div>
+
+            <!-- NOVA SENHA-->
+            <div class="form-group">
+                <label>Nova senha</label>
+                <input type="password" name="novaSenha" class="form-control" ng-model="item.novaSenha"
+                       placeholder="Nova senha">
+            </div>
+
+            <!-- REPETE SENHA NOVA-->
+            <div class="form-group"
+                 ng-class="{ 'has-error' : (item.novaSenha != '') && !editaForm.repeteSenhaNova.$pristine && ( editaForm.repeteSenhaNova.$invalid || (item.repeteSenhaNova != item.novaSenha) ) }">
+                <label>Digite a nova senha novamente</label>
+                <input type="password" name="repeteSenhaNova" class="form-control" ng-model="item.repeteSenhaNova"
+                       placeholder="Digite a nova senha novamente" ng-required="{{item.novaSenha != ''}}">
+
+                <p ng-show="(item.novaSenha != '') && !editaForm.repeteSenhaNova.$pristine && ( editaForm.repeteSenhaNova.$invalid || (item.repeteSenhaNova != item.novaSenha) )"
+                   class="help-block">
+                    Digite a mesma senha nos dois campos</p>
+            </div>
+
+            <!--<p> Senha atual: {{item.senhaAtual}}</p>-->
+
+            <!--<p> Nova senha: {{item.novaSenha}}</p>-->
+
+            <!--<p> Colocou nova senha: {{item.novaSenha != ''}}</p>-->
+
+            <!--<p> Repete nova senha: {{item.repeteSenhaNova}}</p>-->
+
+            <button class="btn btn-primary" ng-click="salva()" type="submit"
+                    ng-disabled="editaForm.$invalid || ( item.novaSenha != '' && ( (item.repeteSenhaNova != item.novaSenha) ))"
+                    title="OK">
+                <span class="glyphicon glyphicon-ok"></span> OK
+            </button>
+
+            <a ng-href="{{listaHref}}" class="btn btn-default" title="Cancelar">
+                <span class="glyphicon glyphicon-remove"></span> Cancelar
+            </a>
+
+        </form>
+    </div>
+</div>
+

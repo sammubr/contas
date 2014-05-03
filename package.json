@@ -1,0 +1,12 @@
+{
+    "name": "starter-node-angular",
+    "main": "server.js",
+    "dependencies": {
+        "express": "latest",
+        "morgan": "latest",
+        "body-parser": "latest",
+        "method-override": "latest",
+        "mongoose": "latest",
+        "bcrypt-nodejs": "latest"
+    }
+}
