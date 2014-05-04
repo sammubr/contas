@@ -1,56 +1,54 @@
 angular.module('SecretariaService', []).factory('Secretaria', ['$http', function ($http) {
 
-    var fItem = {};
+  var fItem = {};
 
-    fItem.identidades = [];
+  return {
 
-    return {
+    getDados: function (pQuery) {
+      return $http.get('/api/secretarias', {
+        params: pQuery
+      });
+    },
 
-        getDados: function (pQuery) {
-            return $http.get('/api/secretarias', {
-                params: pQuery
-            });
-        },
+    persiste: function (item) {
+      return $http.post('/api/secretarias', item);
+    },
 
-        persiste: function (item) {
-            return $http.post('/api/secretarias', item);
-        },
+    exclui: function (id) {
+      return $http.delete('/api/secretarias/' + id);
+    },
 
-        exclui: function (id) {
-            return $http.delete('/api/secretarias/' + id);
-        },
+    getTitulo: function () {
+      return 'Cadastro de secretarias';
+    },
 
-        getTitulo: function () {
-            return 'Cadastro de secretarias';
-        },
+    getNovoRegistroHref: function () {
+      return '/secretarias/item';
+    },
 
-        getNovoRegistroHref: function () {
-            return '/secretarias/item';
-        },
+    getListaHref: function () {
+      return '/secretarias/list';
+    },
 
-        getListaHref: function () {
-            return '/secretarias/list';
-        },
+    getItem: function () {
+      return fItem;
+    },
 
-        getItem: function () {
-            return fItem;
-        },
+    getOrdemInicial: function () {
+      return 'nome';
+    },
 
-        getOrdemInicial: function () {
-            return 'nome';
-        },
+    setItem: function (pItem) {
+      fItem = pItem;
+      return fItem;
+    },
 
-        setItem: function (pItem) {
-            fItem = pItem;
-            return fItem;
-        },
-
-        getQuery: function (pQuery) {
-            return $http.get('/api/secretarias', {
-                params: { query: pQuery }
-            });
-        }
-
+    getQuery: function (pQuery) {
+      return $http.get('/api/secretarias', {
+        params: { query: pQuery }
+      });
     }
+
+  }
 
 }]);

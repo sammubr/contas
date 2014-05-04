@@ -1,5 +1,7 @@
 <div ng-include src="'views/menu.html'"></div>
 
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">{{titulo}}</h3>
@@ -7,7 +9,6 @@
 
     <div class="panel-body">
 
-        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
         <form name="form" novalidate ng-submit="salva()">
 
@@ -15,7 +16,7 @@
                  ng-class="{ 'has-error' : form.nome.$invalid && !form.nome.$pristine }">
                 <label>Nome</label>
                 <input type="text" name="nome" class="form-control" ng-model="item.nome" placeholder="Nome"
-                       autofocus required my-focus>
+                       autofocus required my-focus="true">
 
                 <p ng-show="form.nome.$invalid && !form.nome.$pristine"
                    class="help-block">Nome é

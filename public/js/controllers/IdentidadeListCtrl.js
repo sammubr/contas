@@ -1,71 +1,78 @@
-angular.module('IdentidadeListCtrl', []).controller('IdentidadeListController', function ($scope, $filter, $log, Identidade) {
+angular.module('IdentidadeListCtrl', []).controller('IdentidadeListController', function ($scope, $filter, $log, Identidade, Secretaria) {
 
-    var Persistencia = Identidade;
+  var Persistencia = Identidade;
 
-    $scope.itensSelecionados = [];
-    $scope.selecionaTodos = false;
-    $scope.titulo = Persistencia.getTitulo();
-    $scope.ordem = Persistencia.getOrdemInicial();
-    $scope.novoRegistroHref = Persistencia.getNovoRegistroHref();
+  $scope.alerts = [];
+  $scope.itensSelecionados = [];
+  $scope.selecionaTodos = false;
+  $scope.titulo = Persistencia.getTitulo();
+  $scope.ordem = Persistencia.getOrdemInicial();
+  $scope.novoRegistroHref = Persistencia.getNovoRegistroHref();
 
-    Persistencia.getDados().success(function (lista) {
-        $scope.itens = lista;
-        $log.info('Lista obtida com sucesso.');
-    });
+  $scope.closeAlert = function (index) {
+    $scope.alerts.splice(index, 1);
+  };
 
-    $scope.criaItem = function () {
-        Persistencia.setItem({});
-    };
+  Persistencia.getDados().success(function (lista) {
+    $scope.itens = lista;
+    $log.info('Lista obtida com sucesso.');
+  });
 
-    $scope.editaItem = function (item) {
-        Persistencia.setItem(item);
-    };
+  $scope.criaItem = function () {
+    Persistencia.setItem({});
+  };
 
-    $scope.excluiItem = function (item) {
-        Persistencia.exclui(item._id)
-            .success(function (listaRetornada) {
-                $scope.itens = listaRetornada;
-                $log.info('Item excluído com sucesso.');
-            })
-            .error(function (erro) {
-                $log.info('Erro ao excluir item.');
-                $log.info('Erro: ' + erro);
-            });
-    };
+  $scope.editaItem = function (item) {
+    Persistencia.setItem(item);
+  };
 
-    $scope.selecionaItem = function (item) {
-        if (item.checked) {
-            $scope.itensSelecionados.push(item);
-        } else {
-            var i = $scope.itensSelecionados.indexOf(item);
-            if (i != -1) {
-                $scope.itensSelecionados.splice(i, 1);
-            }
-        }
-        $scope.selecionaTodos = ( $scope.itensSelecionados.length == $scope.itens.length );
-    };
+  $scope.excluiItem = function (item) {
+    Persistencia.exclui(item._id)
+      .success(function (listaRetornada) {
+        $scope.itens = listaRetornada;
+        $scope.alerts[0] = {type: 'success', msg: 'Item excluído com sucesso.'};
+        $log.info('Item excluído com sucesso.');
+      })
+      .error(function (err) {
+        $scope.alerts[0] = {type: 'danger', msg: "Erro ao excluir item: " + err};
+        $log.info('Erro ao excluir item.');
+        $log.info('Erro: ' + err);
+      });
+  };
 
-    $scope.selecionaTodosItens = function (selecionaTodos) {
-        for (i = 0; i < $scope.itens.length; i++) {
-            $scope.itens[i].checked = selecionaTodos;
-            $scope.selecionaItem($scope.itens[i]);
-        }
-    };
+  $scope.selecionaItem = function (item) {
+    if (item.checked) {
+      $scope.itensSelecionados.push(item);
+    } else {
+      var i = $scope.itensSelecionados.indexOf(item);
+      if (i != -1) {
+        $scope.itensSelecionados.splice(i, 1);
+      }
+    }
+    $scope.selecionaTodos = ( $scope.itensSelecionados.length == $scope.itens.length );
+  };
 
-    $scope.itemSelecionado = function (item) {
-        if (item.checked) {
-            return 'active'
-        }
-    };
+  $scope.selecionaTodosItens = function (selecionaTodos) {
+    for (i = 0; i < $scope.itens.length; i++) {
+      $scope.itens[i].checked = selecionaTodos;
+      $scope.selecionaItem($scope.itens[i]);
+    }
+  };
 
-    $scope.excluiItensSelecionados = function () {
-        for (i = 0; i < $scope.itensSelecionados.length; i++) {
-            $scope.excluiItem($scope.itensSelecionados[i]);
-        }
-    };
+  $scope.itemSelecionado = function (item) {
+    if (item.checked) {
+      return 'active'
+    }
+  };
 
-    $scope.colunaSelecionada = function (column) {
-        return column == $scope.ordem && 'sort-' + $scope.reverse;
-    };
+  $scope.excluiItensSelecionados = function () {
+    for (i = 0; i < $scope.itensSelecionados.length; i++) {
+      $scope.excluiItem($scope.itensSelecionados[i]);
+    }
+  };
+
+  $scope.colunaSelecionada = function (column) {
+    return column == $scope.ordem && 'sort-' + $scope.reverse;
+  };
 
 });

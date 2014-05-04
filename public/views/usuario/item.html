@@ -1,5 +1,6 @@
-<div ng-include
-     src="'views/menu.html'"></div>
+<div ng-include src="'views/menu.html'"></div>
+
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -7,9 +8,6 @@
   </div>
 
   <div class="panel-body">
-
-    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}
-    </alert>
 
     <!--ITEM NOVO-->
     <form name="novoForm" novalidate ng-hide="!itemNovo" ng-submit="salva()">

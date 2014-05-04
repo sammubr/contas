@@ -1,5 +1,7 @@
 <div ng-include src="'views/menu.html'"></div>
 
+<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">{{titulo}}</h3>
@@ -21,7 +23,7 @@
                                </a>
                     </span>
                     <input ng-model="filtro" class="form-control" placeholder="Digite para pesquisar" autofocus
-                           my-focus/>
+                           my-focus="true"/>
                 </div>
             </div>
         </div>
