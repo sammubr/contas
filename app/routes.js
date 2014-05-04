@@ -21,7 +21,7 @@ module.exports = function (app) {
   //--------------------------------------------------------------------------------------------------------------------- LOGIN
 
   app.get('/api/login', function (req, res) {
-    ss
+
     // find a user whose email is the same as the forms email
     // we are checking to see if the user trying to login already exists
     Usuario.findOne({ nome: req.query.nome }, function (err, usuario) {
