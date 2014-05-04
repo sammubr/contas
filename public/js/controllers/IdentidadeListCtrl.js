@@ -13,6 +13,11 @@ angular.module('IdentidadeListCtrl', []).controller('IdentidadeListController', 
     $scope.alerts.splice(index, 1);
   };
 
+  Secretaria.getDados().success(function (lista) {
+    $scope.secretarias = lista;
+    $log.info('Lista de secretarias obtida com sucesso.');
+  });
+
   Persistencia.getDados().success(function (lista) {
     $scope.itens = lista;
     $log.info('Lista obtida com sucesso.');

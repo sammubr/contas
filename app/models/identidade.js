@@ -2,8 +2,9 @@ var mongoose = require("mongoose");
 var Secretaria = require("./secretaria");
 
 var identidadeSchema = mongoose.Schema({
-  descricao: { type: String, required: true },
-  endereco: { type: String, required: true },
+  nossoNumero : { type: String, required: true, unique: true },
+  descricao : { type: String, required: true },
+  endereco  : { type: String, required: true },
   secretaria: { type: mongoose.Schema.Types.ObjectId, ref: 'Secretaria', required: true }
 });
 
@@ -31,13 +32,11 @@ identidadeSchema.post('save', function (identidade) {
           secretaria.identidades.push(identidade._id);
         }
         ;
-        secretaria.save(
-          function (err) {
-            if (err) {
-              return err;
-            }
+        secretaria.save(function (err) {
+          if (err) {
+            return err;
           }
-        );
+        });
       }
     });
 
@@ -61,13 +60,11 @@ identidadeSchema.post('save', function (identidade) {
           }
           ;
 
-          secretaria.save(
-            function (err) {
-              if (err) {
-                res.send(err);
-              }
+          secretaria.save(function (err) {
+            if (err) {
+              res.send(err);
             }
-          );
+          });
         }
       });
 
@@ -85,13 +82,11 @@ identidadeSchema.post('save', function (identidade) {
             secretaria.identidades.push(identidade._id);
           }
           ;
-          secretaria.save(
-            function (err) {
-              if (err) {
-                res.send(err);
-              }
+          secretaria.save(function (err) {
+            if (err) {
+              res.send(err);
             }
-          );
+          });
         }
       });
     }
@@ -108,19 +103,14 @@ identidadeSchema.post('remove', function (identidade) {
       return err;
     } else {
       indice = secretaria.identidades.indexOf(identidade._id);
-
       if (indice != -1) {
         secretaria.identidades.splice(indice, 1);
-      }
-      ;
-
-      secretaria.save(
-        function (err) {
-          if (err) {
-            return err;
-          }
+      };
+      secretaria.save(function (err) {
+        if (err) {
+          return err;
         }
-      );
+      });
     }
   });
 

@@ -35,7 +35,7 @@ angular.module('IdentidadeService', []).factory('Identidade', ['$http', function
         },
 
         getOrdemInicial: function () {
-            return 'descricao';
+            return 'nossoNumero';
         },
 
         setItem: function (pItem) {

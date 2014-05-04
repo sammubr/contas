@@ -21,7 +21,7 @@ module.exports = function (app) {
   //--------------------------------------------------------------------------------------------------------------------- LOGIN
 
   app.get('/api/login', function (req, res) {
-ss
+    ss
     // find a user whose email is the same as the forms email
     // we are checking to see if the user trying to login already exists
     Usuario.findOne({ nome: req.query.nome }, function (err, usuario) {
@@ -226,7 +226,11 @@ ss
 
       identidade.save(function (err) {
         if (err) {
-          res.send(500, err);
+          if (err.name == "MongoError") {
+            res.send(500, err.message);
+          } else {
+            res.send(500, err);
+          }
         } else {
           Identidade.find(function (err, identidades) {
             if (err) {
@@ -246,19 +250,36 @@ ss
           res.send(err);
         } else {
 
+          identidade.nossoNumero = req.body.nossoNumero;
           identidade.descricao = req.body.descricao;
           identidade.endereco = req.body.endereco;
           identidade.secretaria = req.body.secretaria;
 
           identidade.save(function (err) {
-            if (err)
-              res.send(err);
-            // get and return all the todos after you create another
-            Identidade.find(function (err, identidades) {
-              if (err)
-                res.send(err);
-              res.json(identidades);
-            });
+            if (err) {
+
+
+              if (err.name == "MongoError") {
+                res.send(500, err.message);
+              } else {
+                res.send(500, err);
+              }
+
+            } else {
+
+
+
+              // get and return all the todos after you create another
+              Identidade.find(function (err, identidades) {
+                if (err)
+                  res.send(err);
+                res.json(identidades);
+              });
+
+            }
+
+
+
           });
 
         }

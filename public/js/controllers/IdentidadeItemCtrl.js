@@ -17,15 +17,13 @@ angular.module('IdentidadeItemCtrl', []).controller('IdentidadeItemController', 
   });
 
   $scope.salva = function () {
-    Persistencia.persiste($scope.item)
-      .success(function () {
-        $log.info('Item salvo com sucesso.');
-        $location.path($scope.listaHref);
-      })
-      .error(function (err) {
-        $scope.alerts[0] = {type: 'danger', msg: "Erro ao salvar item: " + err.message};
-        $log.info('Erro ao salvar item: ' + err.message);
-      });
+    Persistencia.persiste($scope.item).success(function () {
+      $log.info('Item salvo com sucesso.');
+      $location.path($scope.listaHref);
+    }).error(function (err) {
+      $scope.alerts[0] = {type: 'danger', msg: "Erro ao salvar item: " + err};
+      $log.info('Erro ao salvar item: ' + err);
+    });
   };
 
 

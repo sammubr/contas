@@ -12,10 +12,21 @@
     <form name="form" novalidate ng-submit="salva()">
 
       <div class="form-group"
+           ng-class="{ 'has-error' : form.nossoNumero.$invalid && !form.nossoNumero.$pristine }">
+        <label>Nosso número</label>
+        <input type="text" name="nossoNumero" class="form-control" ng-model="item.nossoNumero"
+               placeholder="Nosso número"
+               autofocus required my-focus="true">
+
+        <p ng-show="form.nossoNumero.$invalid && !form.nossoNumero.$pristine"
+           class="help-block">Nosso número é obrigatório</p>
+      </div>
+
+      <div class="form-group"
            ng-class="{ 'has-error' : form.descricao.$invalid && !form.descricao.$pristine }">
         <label>Descrição</label>
         <input type="text" name="descricao" class="form-control" ng-model="item.descricao" placeholder="Descrição"
-               autofocus required my-focus="true">
+               required>
 
         <p ng-show="form.descricao.$invalid && !form.descricao.$pristine"
            class="help-block">Descrição é obrigatório</p>
@@ -34,7 +45,9 @@
            ng-class="{ 'has-error' : form.secretaria.$invalid && !form.secretaria.$pristine }">
         <label>Secretaria</label>
         <select class="form-control" ng-model="item.secretaria" required
-                ng-options="secretaria._id as secretaria.nome for secretaria in secretarias"></select><br>
+                ng-options="secretaria._id as secretaria.nome for secretaria in secretarias">
+          <option value="">Selecione uma secretaria...</option>
+        </select><br>
 
         <p ng-show="form.secretaria.$invalid && !form.secretaria.$pristine"
            class="help-block">Secretaria é obrigatória</p>

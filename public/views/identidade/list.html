@@ -37,6 +37,7 @@
           <th style=" text-align: center; width: 30px"><input type="checkbox" ng-model="selecionaTodos"
                                                               ng-change="selecionaTodosItens(selecionaTodos)">
           </th>
+          <th ng-click="ordem = 'nossoNumero'; reverse=!reverse" ng-class="colunaSelecionada('nossoNumero')">Nosso número</th>
           <th ng-click="ordem = 'descricao'; reverse=!reverse" ng-class="colunaSelecionada('descricao')">Descrição</th>
           <th ng-click="ordem = 'endereco'; reverse=!reverse" ng-class="colunaSelecionada('endereco')">Endereço</th>
           </th>
@@ -46,6 +47,7 @@
           <td style=" text-align: center; width: 30px"><input type="checkbox" ng-model="item.checked"
                                                               ng-change="selecionaItem(item)"></td>
 
+          <td>{{item.nossoNumero}}</td>
           <td>{{item.descricao}}</td>
           <td>{{item.endereco}}</td>
 
