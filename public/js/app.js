@@ -10,9 +10,9 @@ angular.module('sampleApp', ['ngRoute', 'appRoutes', 'ngCookies',
   'SecretariaService', 'SecretariaListCtrl', 'SecretariaItemCtrl',
   'IdentidadeService', 'IdentidadeListCtrl', 'IdentidadeItemCtrl',
 
+  'ContaService', 'ContaListCtrl', 'ContaItemCtrl',
 
   'ModalInstanceCtrl',
   'Relatorio1Ctrl', 'Relatorio1Service',
-  'ContaCtrl', 'ContaService',
 
   'ui.bootstrap']);

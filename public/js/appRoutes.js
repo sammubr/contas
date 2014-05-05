@@ -40,15 +40,17 @@ angular.module('appRoutes', [])
       })
 
 
-//            .when('/identidades', {
-//                templateUrl: 'views/identidade.html',
-//                controller: 'IdentidadeController'
-//            })
 
-      .when('/contas', {
-        templateUrl: 'views/conta.html',
-        controller: 'ContaController'
+      .when('/contas/list', {
+        templateUrl: 'views/conta/list.html',
+        controller: 'ContaListController'
       })
+      .when('/contas/item', {
+        templateUrl: 'views/conta/item.html',
+        controller: 'ContaItemController'
+      })
+
+
 
       .when('/login', {
         templateUrl: 'views/login.html',

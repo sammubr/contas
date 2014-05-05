@@ -1,23 +1,54 @@
-/**
- * Created by samuel on 18/04/14.
- */
 angular.module('ContaService', []).factory('Conta', ['$http', function ($http) {
 
-    return {
-        // call to get all nerds
-        get: function () {
-            return $http.get('/api/contas');
-        },
+  var fItem = {};
 
-        // call to POST and create a new nerd
-        create: function (contaData) {
-            return $http.post('/api/contas', contaData);
-        },
+  return {
 
-        // call to DELETE a nerd
-        delete: function (id) {
-            return $http.delete('/api/contas/' + id);
-        }
+    getDados: function (pQuery) {
+      return $http.get('/api/contas', {
+        params: pQuery
+      });
+    },
+
+    persiste: function (item) {
+      return $http.post('/api/contas', item);
+    },
+
+    exclui: function (id) {
+      return $http.delete('/api/contas/' + id);
+    },
+
+    getTitulo: function () {
+      return 'Cadastro de contas';
+    },
+
+    getNovoRegistroHref: function () {
+      return '/contas/item';
+    },
+
+    getListaHref: function () {
+      return '/contas/list';
+    },
+
+    getItem: function () {
+      return fItem;
+    },
+
+    getOrdemInicial: function () {
+      return 'competencia.ano';
+    },
+
+    setItem: function (pItem) {
+      fItem = pItem;
+      return fItem;
+    },
+
+    getQuery: function (pQuery) {
+      return $http.get('/api/contas', {
+        params: { query: pQuery }
+      });
     }
+
+  }
 
 }]);

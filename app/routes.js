@@ -1,6 +1,7 @@
 var Usuario = require('./models/usuario');
 var Secretaria = require('./models/secretaria');
 var Identidade = require('./models/identidade');
+var Conta = require('./models/conta');
 
 module.exports = function (app) {
 
@@ -308,6 +309,131 @@ module.exports = function (app) {
     });
 
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //--------------------------------------------------------------------------------------------------------------------- CONTAS
+
+  app.get('/api/contas', function (req, res) {
+    Contas.find(req.query, function (err, contas) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(contas);
+      }
+    });
+  });
+
+  app.post('/api/contas', function (req, res) {
+
+    if (typeof req.body._id === 'undefined') {
+
+      var conta = new Conta(req.body);
+
+      conta.save(function (err) {
+        if (err) {
+          if ( (err.name == "MongoError") || (err.name == "CastError")) {
+            res.send(500, err.message);
+          } else {
+            res.send(500, err);
+          }
+        } else {
+          Conta.find(function (err, contas) {
+            if (err) {
+              res.send(err);
+            } else {
+              res.json(contas);
+            }
+          });
+        }
+      });
+
+    } else {
+
+      return Conta.findById(req.body._id, function (err, conta) {
+
+        if (err) {
+          res.send(err);
+        } else {
+
+          conta.identidade = req.body.identidade;
+          conta.competencia.ano = req.body.competencia.ano;
+          conta.competencia.mes = req.body.competencia.mes;
+          conta.valor = req.body.valor;
+          conta.vencimento = req.body.vencimento;
+          conta.observacao = req.body.observacao;
+
+          conta.save(function (err) {
+            if (err) {
+
+
+              if ( (err.name == "MongoError") || (err.name == "CastError")) {
+                res.send(500, err.message);
+              } else {
+                res.send(500, err);
+              }
+
+            } else {
+
+
+
+              // get and return all the todos after you create another
+              Conta.find(function (err, contas) {
+                if (err)
+                  res.send(err);
+                res.json(contas);
+              });
+
+            }
+
+
+
+          });
+
+        }
+      });
+    }
+  });
+
+  app.delete('/api/contas/:conta_id', function (req, res) {
+
+    Conta.findOne({ _id: req.params.conta_id }, function (err, conta) {
+      if (err || !conta) {
+        res.send(err);
+      } else {
+        conta.remove(function (err) {
+          if (err) {
+            res.send(err);
+          } else {
+            Conta.find(function (err, contas) {
+              if (err)
+                res.send(err);
+              res.json(contas);
+            });
+          }
+        });
+      }
+    });
+
+  });
+
+
+
+
+
+
+
 
 
   // frontend routes =========================================================
