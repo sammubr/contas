@@ -27,8 +27,11 @@
       <div class="form-group"
            ng-class="{ 'has-error' : form.ano.$invalid && !form.ano.$pristine }">
         <label>Ano</label>
-        <input type="number" name="ano" class="form-control" ng-model="item.competencia.ano" placeholder="Ano" min="1" max="9999" integer required>
-        <p ng-show="(form.ano.$error.integer) || (form.ano.$error.min || form.ano.$error.max)" class="help-block">Ano inválido</p>
+        <input type="number" name="ano" class="form-control" ng-model="item.competencia.ano" placeholder="Ano" min="1"
+               max="9999" integer required>
+
+        <p ng-show="(form.ano.$error.integer) || (form.ano.$error.min || form.ano.$error.max)" class="help-block">Ano
+          inválido</p>
         <!--<p ng-show="!form.ano.$error.integer && form.ano.$invalid && !form.ano.$pristine" class="help-block">Ano é obrigatório</p>-->
       </div>
 
@@ -36,23 +39,31 @@
       <div class="form-group"
            ng-class="{ 'has-error' : form.mes.$invalid && !form.mes.$pristine }">
         <label>Mês</label>
-        <input type="number" name="mes" class="form-control" ng-model="item.competencia.mes" placeholder="Mês" min="1" max="12" integer required>
-        <p ng-show="(form.mes.$error.integer) || (form.mes.$error.min || form.mes.$error.max)" class="help-block">Mês inválido</p>
+        <input type="number" name="mes" class="form-control" ng-model="item.competencia.mes" placeholder="Mês" min="1"
+               max="12" integer required>
+
+        <p ng-show="(form.mes.$error.integer) || (form.mes.$error.min || form.mes.$error.max)" class="help-block">Mês
+          inválido</p>
         <!--<p ng-show="form.mes.$invalid && !form.mes.$pristine" class="help-block">Mês é obrigatório</p>-->
       </div>
 
 
       <div class="form-group" ng-class="{ 'has-error' : form.valor.$invalid && !form.valor.$pristine }">
         <label>Valor</label>
-        <input type="number" name="valor" class="form-control" ng-model="item.valor" placeholder="Valor" smart-float required>
+        <input type="number" name="valor" class="form-control" ng-model="item.valor" placeholder="Valor" smart-float
+               required>
+
         <p ng-show="(form.mes.$error.float)" class="help-block">Mês inválido</p>
+
         <p ng-show="form.valor.$invalid && !form.valor.$pristine" class="help-block">Valor é obrigatório</p>
       </div>
 
       <div class="form-group" ng-class="{ 'has-error' : form.vencimento.$invalid && !form.vencimento.$pristine }">
         <label>Vencimento</label>
         <input name="vencimento" class="form-control" ng-model="item.vencimento" placeholder="Vencimento" required>
-        <p ng-show="form.vencimento.$invalid && !form.vencimento.$pristine" class="help-block">Vencimento é obrigatório</p>
+
+        <p ng-show="form.vencimento.$invalid && !form.vencimento.$pristine" class="help-block">Vencimento é
+          obrigatório</p>
       </div>
 
       <div class="form-group">

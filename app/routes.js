@@ -372,6 +372,7 @@ module.exports = function (app) {
           conta.competencia.mes = req.body.competencia.mes;
           conta.valor = req.body.valor;
           conta.vencimento = req.body.vencimento;
+
           conta.observacao = req.body.observacao;
 
           conta.save(function (err) {
